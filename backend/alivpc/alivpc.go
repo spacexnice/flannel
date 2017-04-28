@@ -190,6 +190,7 @@ func (be *AliVpcBackend) recreateRoute(c *ecs.Client, table ecs.RouteTableSetTyp
 		log.Infof("Keep route entry: rtableid=%s, CIDR=%s, NextHop=%s \n", e.RouteTableId, e.DestinationCidrBlock, e.InstanceId)
 	}
 	if !exist {
+		log.Infof("Create route entry: rtableid=%s, CIDR=%s,NextHopType=%v, NextHopID=%s \n",route.RouteTableId, route.DestinationCidrBlock, route.NextHopType, route.NextHopId)
 		return c.CreateRouteEntry(route)
 	}
 	return nil
